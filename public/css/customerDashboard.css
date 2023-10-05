@@ -1,0 +1,67 @@
+ /* styles.css */
+ #customerDashboard {
+     font-family: Arial, sans-serif;
+     background-color: #f4f4f4;
+     margin: 0;
+     padding: 0;
+ }
+
+ .containerCustomer {
+     max-width: 800px;
+     margin-top: 100px;
+     margin-left: 550px;
+     background-color: #fff;
+     padding-top: 30px;
+     padding-left: 30px;
+     padding-bottom: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+
+ .profile {
+     margin-bottom: 20px;
+ }
+
+ .profile #h1 {
+     font-size: 24px;
+     margin-bottom: 5px;
+ }
+
+ .profile #p {
+     font-size: 16px;
+     margin-bottom: 10px;
+ }
+
+ .complaint-history,
+ .complaint-status {
+     border-top: 1px solid #ccc;
+     margin-top: 20px;
+     padding-top: 20px;
+ }
+
+ h2 {
+     font-size: 24px;
+     color: #333;
+     margin-bottom: 10px;
+ }
+
+ /* ul {
+     list-style-type: none;
+     padding: 0;
+ }
+
+ ul li {
+     display: flex;
+     justify-content: space-between;
+     font-size: 16px;
+     margin-bottom: 10px;
+ } */
+
+ /* Background gradient example */
+ .card-body {
+     background: linear-gradient(45deg, #ccdef1, #6d6ff0);
+     /* Your desired gradient */
+     color: white;
+     /* Adjust text color for better contrast */
+ }
+
+ /* Add more CSS styling as needed to make it look professional */
