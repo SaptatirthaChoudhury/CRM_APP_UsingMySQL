@@ -1,0 +1,52 @@
+<%- include("partials/complainPage/header") -%>
+
+    <body>
+        <div class="container-form">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="col-md-3">
+                    <label for="validationCustom04" class="form-label">Complain category</label>
+                    <select class="form-select" id="validationCustom04" name="categoryName" required>
+                        <option>select</option>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Customer name</label>
+                    <div class="input-group has-validation">
+
+                        <input type="text" class="form-control" id="validationCustomUsername"
+                            aria-describedby="inputGroupPrepend" name="customerName" required>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Customer email</label>
+                    <input type="email" class="form-control" id="validationCustom02" name="emailId" required>
+
+                </div>
+
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Description</label>
+                    <textarea type="text" class="form-control" id="validationCustom03" name="description" required
+                        cols="6" rows="7"></textarea>
+
+                </div>
+
+                <div class="col-md-3">
+                    <label for="validationCustom05" class="form-label">date</label>
+                    <input type="date" class="form-control" id="validationCustom05" name="date" required />
+
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit complain</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    </body>
+
+    <%- include("partials/complainPage/footer") -%>
