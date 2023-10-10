@@ -5,7 +5,7 @@ module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "MOHOR321",
-    DB: "crmDB",
+    DB: "customercomplainsystem",
     dialect: "mysql",
     pool: {
         max: 5, // Maximum connection possible at any time = 5 at peak load

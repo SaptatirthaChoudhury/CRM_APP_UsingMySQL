@@ -1,0 +1,139 @@
+  /* ... (Previous CSS styles) ... */
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+  }
+
+  header {
+      background-color: #3b3a49;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+  }
+
+  h1 {
+      margin: 0;
+  }
+
+  .navbar {
+      background-color: #333;
+      overflow: hidden;
+  }
+
+  .navbar a {
+      float: left;
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
+
+  .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  th,
+  td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  th {
+      background-color: #333;
+      color: #fff;
+  }
+
+  tr:nth-child(even) {
+      background-color: #f2f2f2;
+  }
+
+  .check-complaints-button {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .check-complaints-button button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .check-complaints-button button:hover {
+      background-color: #555;
+  }
+
+  /* Initially hide the table */
+  table {
+      display: none;
+  }
+
+  /* CSS for styling the form */
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+  }
+
+  .containerack {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+      text-align: center;
+  }
+
+  label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+  }
+
+  select,
+  textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  button:hover {
+      background-color: #555;
+  }
+
+  .comText {
+    padding-bottom: 12px;
+  }

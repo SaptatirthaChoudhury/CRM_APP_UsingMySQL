@@ -3,17 +3,17 @@ const constants = require("../utils/constants");
 
 module.exports = (sequelize, Sequelize) => {
 
-    const User = sequelize.define("user", {
+    const Customer = sequelize.define("customer", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        customerName: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        userId: {
+        customerId: {
             type: Sequelize.STRING,
             allowNull: false,
             unique: true
@@ -30,29 +30,17 @@ module.exports = (sequelize, Sequelize) => {
                 isEmail: true
             }
         },
-        userType: {
+        customerStatus: {
             type: Sequelize.STRING,
-            allowNull: false,
-            defaultValue: constants.userTypes.customer,
+            defaultValue: constants.customerStatus.approved,
             validate: {
                 isIn: {
-                    args: [[constants.userTypes.customer, constants.userTypes.admin, constants.userTypes.engineer]],
-                    msg: 'Must be valid userType'
-                }
-            }
-        },
-        userStatus: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            defaultValue: constants.userStatus.approved,
-            validate: {
-                isIn: {
-                    args: [[constants.userStatus.approved, constants.userStatus.pending, constants.userStatus.rejected]],
+                    args: [[constants.customerStatus.approved, constants.customerStatus.pending, constants.customerStatus.rejected]],
                     msg: 'Must be a valid userStatus'
                 }
             }
         }
     })
 
-    return User;
+    return Customer;
 }

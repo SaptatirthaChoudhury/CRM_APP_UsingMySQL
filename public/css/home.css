@@ -108,3 +108,46 @@ footer {
 .footer-links a:hover {
     color: #e67e22;
 }
+
+.admin-links {
+    float: right;
+    /* Align the admin links to the right side */
+    margin-right: 20px;
+    /* Add some right margin for spacing */
+}
+
+.admin-links ul {
+    list-style-type: none;
+    /* Remove bullet points */
+}
+
+.admin-links li {
+    display: inline-block;
+    /* Display admin links horizontally */
+    margin-right: 10px;
+    /* Add some right margin between admin links */
+}
+
+.admin-links a {
+    color: #333;
+    /* Set text color for admin links */
+    font-weight: bold;
+    /* Make admin links bold */
+    text-decoration: none;
+    /* Remove underlines */
+    background-color: #889cf8;
+    /* Light background color */
+    padding: 5px 10px;
+    /* Add padding for better appearance */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s;
+    /* Smooth hover effect */
+}
+
+.admin-links a:hover {
+    background-color: #5356fa;
+    /* Darker background color on hover */
+    color: #333;
+    /* Text color on hover */
+}

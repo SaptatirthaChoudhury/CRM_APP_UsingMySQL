@@ -1,20 +1,20 @@
 module.exports = {
 
-    userTypes: {
+    customerOrAdmin: {
         customer: "CUSTOMER",
-        admin: "ADMIN",
-        engineer: "ENGINEER"
+        admin: "ADMIN"
+
     },
 
-    userStatus: {
+    customerStatus: {
         pending: "PENDING",
         approved: "APPROVED",
         rejected: "REJECTED"
     },
 
-    ticketStatus: {
-        open: "OPEN",
-        closed: "CLOSED",
+    complainStatus: {
+        inProgress: "IN_PROGRESS",
+        resolved: "RESOLVED",
         blocked: "BLOCKED"
     }
 }

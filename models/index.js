@@ -33,20 +33,47 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-const ticketSchema = require("./ticket.model");
-db.ticket = ticketSchema(sequelize, Sequelize);
-const userSchema = require("./user.model");
-db.user = userSchema(sequelize, Sequelize);
+const complainSchema = require("./complain.table");
+db.complain = complainSchema(sequelize, Sequelize);
+
+const customerSchema = require("./customer.table");
+db.customer = customerSchema(sequelize, Sequelize);
+
+const feedbackSchema = require("./feedback.table");
+db.feedback = feedbackSchema(sequelize, Sequelize);
+
+const statusSchema = require("./status.table");
+db.status = statusSchema(sequelize, Sequelize);
+
+const adminSchema = require("./adminProfile.table");
+db.admin = adminSchema(sequelize, Sequelize);
 
 /**
  * Establish the relation between
- *  User and Ticket : One to Many
+ *  Customer and Complain : One to Many
  */
-db.user.hasMany(db.ticket);
-db.ticket.belongsTo(db.user);
+db.customer.hasMany(db.complain);
+db.complain.belongsTo(db.customer);
 
 /**
- * let's see if any upgradation comes then we extend further
+ * Establish the relation between
+ * Customer and Feedback : One to Many
  */
+db.customer.hasMany(db.feedback);
+db.feedback.belongsTo(db.customer);
+
+/**
+ * Establish the relation between complain and status : One to One
+ */
+db.complain.hasOne(db.status);
+db.status.belongsTo(db.complain);
+
+/**
+ * Establish the relation between admin and status : One to One
+ */
+db.admin.hasOne(db.status);
+db.status.belongsTo(db.admin);
+
+
 
 module.exports = db;

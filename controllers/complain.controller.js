@@ -2,41 +2,27 @@
  * This file should have the logic to create controller for Ticket resource
  */
 const db = require("../models");
-const Ticket = db.ticket;
-const User = db.user;
-const constants = require("../utils/constants");
-const objectConvereter = require("../utils/objectConvereter");
+const Complain = db.complain;
 
-exports.createTicket = async (req, res) => {
+
+
+exports.createComplain = async (req, res) => {
 
     try {
-        const reporterId = "Ma"
-        console.log("___***** inside ticket controller ****____", req.userId);
-        const ticketObj = {
-            title: req.body.title,
-            ticketPriority: req.body.ticketPriority,
-            description: req.body.description,
-            status: req.body.status,
-            reporter: reporterId
+
+        const complainObj = {
+            complain_Category: req.body.categoryName,
+            customer_Name: req.body.customerName,
+            customer_Email: req.body.emailId,
+            description: req.body.description
         }
 
-        /**
-         *  Find the Engineer available and attach to the ticket Object
-         */
-        const engineer = await User.findOne({
-            where: {
-                userType: constants.userTypes.engineer,
-                userStatus: constants.userStatus.approved
-            }
-        })
-        console.log("engineer : ", engineer);
-        if (engineer) {
-            ticketObj.assignee = engineer.userId
-        }
+        const complainCreated = await Complain.create(complainObj)
 
-        const ticketCreated = await Ticket.create(ticketObj)
+        console.log("complainCreated : ", complainCreated);
 
-        console.log("ticketCreated : ", ticketCreated);
+        res.status(200).redirect("/complain");
+        
 
     } catch (err) {
         console.log("Error while doing the DB operation ", err.message);

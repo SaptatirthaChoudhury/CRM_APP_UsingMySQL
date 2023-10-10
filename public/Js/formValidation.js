@@ -1,0 +1,33 @@
+// Get a reference to the "Send Complaint" button and the complaint form
+
+// const sendComplaintButton = document.getElementById("sendComplaint");
+// const complaintForm = document.getElementById("complaintForm");
+
+// // Add a click event listener to the button
+
+// sendComplaintButton.addEventListener("click", function () {
+
+//     alert("Complaint has been sent successfully!");
+
+// });
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+    })
+})()

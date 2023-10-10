@@ -65,3 +65,10 @@
  }
 
  /* Add more CSS styling as needed to make it look professional */
+
+ .table-wrapper {
+     max-height: 200px;
+     /* Set a fixed height as needed */
+     overflow-y: scroll
+         /* Enable vertical scroll */
+ }
