@@ -4,11 +4,12 @@ const key = require("../configs/adminSecret.config");
 const db = require("../models");
 const Admin = db.admin;
 
-exports.signup = async () => {
+exports.adminSignup = async (req, res) => {
 
     const adminObj = {
         adminName: req.body.name,
         adminId: req.body.id,
+        adminRole: req.body.role,
         adminEmail: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8)
     }
@@ -17,31 +18,29 @@ exports.signup = async () => {
         const adminCreated = await Admin.create(adminObj);
         console.log("admin ", adminCreated);
 
-        resizeBy.status(200).redirect("/admin-login");
+        res.status(302).redirect("/admin-login")
 
     } catch (err) {
         console.log("Some error happened ", err.message);
-        res.status(500).send({
-            message: "Some internal server error ! "
-        })
+        res.status(302).redirect("/admin-signup")
     }
 
 }
 
-exports.signin = async (req, res) => {
+exports.adminSignin = async (req, res) => {
 
     try {
         const admin = await Admin.findOne({
             where: {
-                adminId: req.body.id
+                adminId: req.body.id,
+                adminRole: req.body.role
+
             }
         });
 
         console.log("admin info ", admin);
         if (admin == null) {
-            return res.status(400).send({
-                message: "Failed ! customerId passed doesn't exist"
-            })
+            return res.status(302).redirect("/admin-signup");
         }
 
 
@@ -62,19 +61,22 @@ exports.signin = async (req, res) => {
         */
         const token = jwt.sign({
             id: admin.adminId
-        }, secretKey.secret, {
+        }, key.adminSecret, {
             expiresIn: 30000
         });
 
 
         /**Set access token in response header */
-        res.cookie("x-access-token", token, {
+        res.cookie("ADMIN_token", token, {
             httpOnly: true,
             expires: new Date(Date.now() + 60 * 60 * 1000),
         })
-
-        res.status(201).redirect("/admin-login")
+      console.log("request object : ____", req.cookies.ADMIN_token);
+        res.status(302).redirect("/admin/home")
     } catch (err) {
-
+        console.log("Internal error ! " + err.message);
+        res.status(500).send({
+            message: "Some internal error while signin"
+        })
     }
 }

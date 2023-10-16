@@ -3,6 +3,7 @@
  */
 
 const complainController = require("../controllers/complain.controller");
+const customerVerify = require("../middlewares/customerAuth.jwt");
 
 module.exports = (app) => {
 
@@ -14,7 +15,7 @@ module.exports = (app) => {
      * And add another middleware for check is there any available engineer or not.
      */
 
-    app.post("/customerComplainSystem/api/v1/Sendcomplain", complainController.createComplain);
+    app.post("/customerComplainSystem/api/v1/Sendcomplain", [customerVerify.verifyToken], complainController.createComplain);
 
     /**
      * Get all the tickets

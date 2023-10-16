@@ -1,34 +1,33 @@
 const jwt = require("jsonwebtoken");
-const secretConfig = require("../configs/secret.config");
+const customerSecret = require("../configs/customerSecret.config");
 const constants = require("../utils/constants");
 const db = require("../models");
-const User = db.user
+const Customer = db.customer;
 
 const verifyToken = (req, res, next) => {
 
-    const token = req.headers["x-access-token"]
+    const customerToken = req.cookies["CUSTOMER_token"]
 
     /**
      * Check if the token is present
      */
-    if (!token) {
-        return res.status(403).send({
-            message: "No token provided ! Access prohibited"
-        })
+
+    if (!customerToken) {
+        return res.status(302).redirect("/signin")
     }
 
     /**
-    * Go and validate the token
-    */
-    jwt.verify(token, secretConfig.secret, (err, decoded) => {
-        console.log("Inside jwt verification ___________", decoded);
+        * Go and validate the token
+        */
+    jwt.verify(customerToken, customerSecret.secret, async (err, decoded) => {
+
+
+
         if (err) {
-            return res.status(401).send({
-                message: "UnAuthorized !"
-            })
+            return res.status(302).redirect("/signup");
         }
 
-        req.userId = decoded.id;
+        req.id = decoded.id;
 
         next();
     })

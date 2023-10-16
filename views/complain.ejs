@@ -8,7 +8,17 @@
                     <label for="validationCustom04" class="form-label">Complain category</label>
                     <select class="form-select" id="validationCustom04" name="categoryName" required>
                         <option>select</option>
-                        <option>payment issue</option>
+                        <option>payment issues</option>
+                        <option>product quality issues</option>
+                        <option>delivery problems</option>
+                        <option>returns and refunds</option>
+                        <option>website or app issues</option>
+                        <option>customer service concern</option>
+                        <option>security & privacy concerns</option>
+                        <option>product recalls or safety issues</option>
+                        <option>digital product access issues</option>
+                        <option>fraudulent activity</option>
+                        <option>inventory & stock avalability</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -33,13 +43,19 @@
 
                 </div>
 
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Create token</label>
+                    <input type="number" class="form-control" id="validationCustom02" placeholder=" any four digit" name="token" required>
+
+                </div>
+
                 <div class="col-12">
                     <!-- <button class="btn btn-primary" type="submit">Submit complain</button> -->
                     <input class="btn btn-primary" type="submit" value="Submit complain">
                 </div>
             </form>
         </div>
-        
+
         <script src="/public/Js/formValidation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

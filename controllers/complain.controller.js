@@ -3,6 +3,8 @@
  */
 const db = require("../models");
 const Complain = db.complain;
+const Status = db.status;
+const Customer = db.customer;
 
 
 
@@ -14,15 +16,28 @@ exports.createComplain = async (req, res) => {
             complain_Category: req.body.categoryName,
             customer_Name: req.body.customerName,
             customer_Email: req.body.emailId,
-            description: req.body.description
+            customerToken: req.body.token,
+            description: req.body.description,
+
         }
 
         const complainCreated = await Complain.create(complainObj)
-
         console.log("complainCreated : ", complainCreated);
 
+        const getCustomer = await Customer.findOne({ where: { email: complainCreated.customer_Email } })
+
+        if (getCustomer) {
+            complainCreated.customerId = getCustomer.id
+            await complainCreated.save();
+        }
+
+
+
+        const createStatus = await Status.create({ status: "IN_PROGRESS", complainId: complainCreated.id, customerToken: complainCreated.customerToken })
+        console.log("complain status : ", createStatus);
+
         res.status(200).redirect("/complain");
-        
+
 
     } catch (err) {
         console.log("Error while doing the DB operation ", err.message);
@@ -36,37 +51,13 @@ exports.createComplain = async (req, res) => {
  * Getting all the tickets
  */
 
-exports.getAllTickets = async (req, res) => {
-
-    /**
-     * We need to find the all the tickets
-     * We can use query params to filter out the tickets 
-     */
-    const queryObj = {};
-
-    const statusQP = req.query.status;
-    const reporterQP = req.query.reporter;
-    const assigneeQP = req.query.assignee;
-
-    if (statusQP) {
-        queryObj.status = statusQP;
-    }
-
-    if (reporterQP) {
-        queryObj.reporter = reporterQP
-    }
-
-    if (assigneeQP) {
-        queryObj.assignee = assigneeQP
-    }
+exports.getAllComplains = async (req, res) => {
 
     try {
 
-        const tickets = await Ticket.findAll({
-            where: queryObj
-        })
-        console.log(tickets);
-        return res.status(200).send(tickets)
+        const complains = await Complain.findAll();
+       console.log("get all complains ", complains);
+        return complains;
 
 
     } catch (err) {

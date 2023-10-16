@@ -1,25 +1,45 @@
 <%- include("partials/adminPage/header") -%>
 
     <div class="login-container">
-        <h2>Admin Signup</h2>
-        <form action="/admin-login" method="POST">
-            <div class="form-group">
-                <label for="username">name:</label>
-                <input type="text" id="username" name="name" required>
+
+        <form action="http://localhost:8081/customerComplainSystem/api/v1/adminAuth/signup" method="POST">
+            <h1 class="h3 mb-3 fw-normal">Admin Signup</h1>
+            <div class="form-floating">
+                <input type="text" class="form-control" placeholder="name" name="name" required>
+                <label for="name">Name</label>
             </div>
-            <div class="form-group">
-                <label for="username">id:</label>
-                <input type="text" id="name" name="id" required>
+            <div class="form-floating">
+                <input type="text" class="form-control" placeholder="userid" name="id" required>
+                <label for="userId">User id</label>
             </div>
-            <div class="form-group">
-                <label for="username">email:</label>
-                <input type="email" id="name" name="email" required>
+            <select class="form-select" aria-label="Default select example" name="role" required>
+                <option selected value="select your role">Select your role</option>
+                <option value="Finance Manager">Finance Manager</option>
+                <option value="Quality Assurance Manager">Quality Assurance Manager</option>
+                <option value="Logistics Coordinator">Logistics Coordinator</option>
+                <option value="Returns and Refunds Specialist">Returns and Refunds Specialist</option>
+                <option value="IT Support Specialist">IT Support Specialist</option>
+                <option value="Customer Service Manager">Customer Service Manager</option>
+                <option value="Data Privacy Officer">Data Privacy Officer</option>
+                <option value="Product Safety Manager">Product Safety Manager</option>
+                <option value="Digital Product Support Specialist">Digital Product Support Specialist</option>
+                <option value="Fraud Prevention Specialist">Fraud Prevention Specialist</option>
+                <option value="Inventory Manager">Inventory Manager</option>
+            </select>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" placeholder="email" name="email" required>
+                <label for="email">Email id</label>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="form-floating">
+                <input type="password" class="form-control" placeholder="password" name="password" required>
+                <label for="password">Password</label>
             </div>
-            <button type="submit">signup</button>
+
+
+            <div class="w-100 btn btn-lg btn-primary">
+                <input class="w-100 btn btn-lg btn-primary" type="submit" value="Sign up">
+            </div>
         </form>
 
     </div>

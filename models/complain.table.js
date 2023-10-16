@@ -13,6 +13,16 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(255),
             allownull: false
         },
+        status: {
+            type: Sequelize.STRING,
+            defaultValue: constants.complainStatus.inProgress,
+            validate: {
+                isIn: {
+                    args: [constants.complainStatus.inProgress, constants.complainStatus.resolved, constants.complainStatus.blocked],
+                    msg: 'Must be valid complain status'
+                }
+            }
+        },
         description: {
             type: Sequelize.TEXT,
             allownull: false
@@ -21,10 +31,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(255),
             allownull: false
         },
+        customerToken: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            unique: true
+        },
         customer_Email: {
             type: Sequelize.STRING(255),
             allownull: false,
-            unique: true,
             validate: {
                 isEmail: true
             }

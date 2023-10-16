@@ -1,6 +1,9 @@
 /**
  * This is going to be the starting point of the application
  */
+const verifyCustomer = require("./middlewares/customerAuth.jwt");
+const complain = require("./controllers/complain.controller");
+
 
 const express = require('express');
 const app = express();
@@ -33,25 +36,38 @@ app.get("/signup", (req, res) => {
 app.get("/signin", (req, res) => {
     res.render("signin")
 })
-app.get("/complain", (req, res) => {
+app.get("/complain", [verifyCustomer.verifyToken], (req, res) => {
     res.render("complain");
 })
-app.get("/feedback", (req, res) => {
+app.get("/feedback", [verifyCustomer.verifyToken], (req, res) => {
     res.render("feedback");
 })
-app.get("/dashboard", (req, res) => {
-    res.render("customerDashboard");
-})
-app.get("/admin/home", (req, res) => {
-    res.render("adminHome");
-})
+
+
+
+async function allComplain() {
+    const complains = await complain.getAllComplains();
+
+    app.get("/dashboard", [verifyCustomer.verifyToken], (req, res) => {
+
+        res.render("customerDashboard", { complains: complains });
+    })
+
+    app.get("/admin/home", (req, res) => {
+        res.render("adminHome", { complains: complains });
+    })
+}
+allComplain();
+
+
+
+
 app.get("/admin-login", (req, res) => {
     res.render("adminLogin");
 })
 app.get("/admin-signup", (req, res) => {
     res.render("adminSignup");
 })
-
 
 
 
@@ -64,7 +80,7 @@ const db = require("./models");
 /**
  * Execute the create table operation
  */
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     console.log("Table created");
 }).catch(err => {
     console.log("Error message : ", err);
@@ -74,17 +90,24 @@ db.sequelize.sync({ force: true }).then(() => {
 /**
  * importing the routes and connect to the server
  */
-const authRoute = require("./routes/auth.route");
+const authRoute = require("./routes/customerAuth.route");
 authRoute(app);
-
-const userRoute = require("./routes/user.route");
-userRoute(app);
 
 const complainRoute = require("./routes/complain.route");
 complainRoute(app);
 
 const feedbackRoute = require("./routes/feedback.route");
 feedbackRoute(app);
+
+const adminAuthRoute = require("./routes/adminAuth.route");
+adminAuthRoute(app);
+
+const statusRoute = require("./routes/status.route");
+statusRoute(app);
+
+
+
+
 
 
 

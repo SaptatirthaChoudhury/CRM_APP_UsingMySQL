@@ -3,9 +3,11 @@
     <body id="customerDashboard" class="card-body">
         <div class="containerCustomer">
             <div class="profile">
-                <h1 id="h1" class="card-title display-4">Welcome, [Customer Name]</h1>
-                <p id="p" class="card-text text-muted">Email: [Customer Email]</p>
-                <p id="p" class="card-text">User ID: [Customer User ID]</p>
+                <h1 id="h1" class="card-title display-4">Welcome, <%= complains[0].customer_Name %>
+                </h1>
+                <p id="p" class="card-text text-muted">Email: <%= complains[0].customer_Email %>
+                </p>
+
             </div>
             <div class="complaint-history">
                 <h2>Complaint History</h2>
@@ -13,67 +15,35 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Serial No</th>
+
                                 <th scope="col">Complaint Category</th>
                                 <th scope="col">Complaint ID</th>
-                                <th scope="col">Date</th>
+                                <th scope="col">status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Transaction issue</td>
-                                <td>8990</td>
-                                <td>04-10-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Product delivery</td>
-                                <td>1120</td>
-                                <td>05-11-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Product delivery</td>
-                                <td>1120</td>
-                                <td>05-11-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Product delivery</td>
-                                <td>1120</td>
-                                <td>05-11-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Product delivery</td>
-                                <td>1120</td>
-                                <td>05-11-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Product delivery</td>
-                                <td>1120</td>
-                                <td>05-11-2023</td>
-                            </tr>
-                            <!-- Add more rows for additional complaint history entries -->
+                            <% for (let i=0; i < complains.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= complains[i].complain_Category %>
+                                    </td>
+                                    <td>
+                                        <%= complains[i].id %>
+                                    </td>
+                                    <td>
+                                        <%= complains[i].status %>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                                    <!-- Add more rows for additional complaint history entries -->
                         </tbody>
                     </table>
                 </div>
 
             </div>
 
-            <div class="complaint-status">
-                <h2>Check Complaint Status</h2>
-                <form id="checkStatusForm">
-                    <label for="complaintId">Enter Complaint ID or Reference Number:</label>
-                    <input type="text" id="complaintId" name="complaintId" required>
-                    <button class="btn btn-primary" type="submit">Check Status</button>
-                </form>
-                <div id="statusResult">
-                    <p>status Result</p>
-                </div>
-            </div>
+           
         </div>
 
         <script src="/public/Js/customerDashboard.js"></script>

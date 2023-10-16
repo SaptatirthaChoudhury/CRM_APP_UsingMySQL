@@ -7,7 +7,7 @@
   }
 
   header {
-      background-color: #3b3a49;
+      background-color: #4b4a52;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -107,7 +107,7 @@
   label {
       display: block;
       margin-bottom: 10px;
-      font-weight: bold;
+      font-weight:normal;
   }
 
   select,

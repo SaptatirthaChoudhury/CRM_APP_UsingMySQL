@@ -4,17 +4,17 @@
  * This file is dedicated to the routing logic for sign up and sign in 
  */
 
-const authController = require("../controllers/auth.controller");
-// const { } = require("../middlewares");
+const customerAuthController = require("../controllers/customerAuth.controller");
+
 
 module.exports = (app) => {
   /**
     * POST  /crm/api/v1/auth/signup
     */
-  app.post("/crm/api/v1/auth/signup", authController.signup);
+  app.post("/crm/api/v1/auth/signup",  customerAuthController.signup);
 
   /**
    * POST /crm/api/v1/auth/login
    */
-  app.post("/crm/api/v1/auth/signin", authController.signin)
+  app.post("/crm/api/v1/auth/signin", customerAuthController.signin)
 }

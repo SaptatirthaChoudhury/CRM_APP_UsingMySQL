@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Home</title>
+    <title>Admin home</title>
     <link rel="stylesheet" href="/public/css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 
 <body>
     <header class="bg-dark text-white p-3">
-        <h1 class="text-center">Admin Home</h1>
+        <h1 class="text-center"><a style="text-decoration:none;" href="/admin/home">Admin Home</a></h1>
     </header>
 
     <div class="navbar">
@@ -21,48 +21,53 @@
         <a class="navbar-brand" href="/admin-signup">Admin signup</a>
     </div>
 
-   
+
 
     <div class="container mt-4" class="container">
         <button id="check-complaints-button" class="btn btn-primary mb-3">Check Customer Complaints</button>
+
         <table id="complaints-table" class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th>Complain Category</th>
                     <th>Customer Name</th>
-                    <th>Status</th>
                     <th>Description</th>
-                    <th>Date</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Sample complaint data, you can dynamically generate this with JavaScript -->
-                <tr>
-                    <td>Product Issue</td>
-                    <td>John Doe</td>
-                    <td>In Progress</td>
-                    <td>Product arrived damaged</td>
-                    <td>2023-10-15</td>
-                </tr>
-                <tr>
-                    <td>Service Complaint</td>
-                    <td>Jane Smith</td>
-                    <td>Open</td>
-                    <td>Poor customer service</td>
-                    <td>2023-10-16</td>
-                </tr>
-                <!-- Add more rows for additional complaints -->
+                <% for (let i=0; i < complains.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= complains[i].complain_Category %>
+                        </td>
+                        <td>
+                            <%= complains[i].customer_Name %>
+                        </td>
+                        <td>
+                            <%= complains[i].description %>
+                        </td>
+                        <td>
+                            <%= complains[i].status %>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                        <!-- Add more rows for additional complaints -->
             </tbody>
         </table>
 
         <div class="containerack">
             <h2>Acknowledge customer complain</h2>
-            <form>
+
+            <form action="http://localhost:8081/updateCustomerComplainStatus/api/v1" method="post">
+                
                 <label for="status">Status:</label>
                 <select class="form-control" id="status" name="status">
-                    <option value="resolved">Resolved</option>
-                    <option value="inProgress">In Progress</option>
-                    <option value="blocked">Blocked</option>
+                    <option selected value="select status">Select status</option>
+                    <option value="RESOLVED">RESOLVED</option>
+                    <option value="IN_PROGRESS">IN_PROGRESS</option>
+                    <option value="BLOCKED">BLOCKED</option>
                 </select>
                 <div class="comText">
                     <label for="comments">Message for customer:</label>

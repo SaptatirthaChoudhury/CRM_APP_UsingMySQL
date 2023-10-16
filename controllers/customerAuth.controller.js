@@ -18,10 +18,11 @@
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const constants = require("../utils/constants");
-const secretKey = require("../configs/secret.config");
+const secretKey = require("../configs/customerSecret.config");
 const db = require("../models");
+
 const Customer = db.customer;
+
 
 /**
  * Logic to accept the registration/signup
@@ -31,7 +32,7 @@ const Customer = db.customer;
  */
 
 exports.signup = async (req, res) => {
-   
+
     /**
      * Creating object for signup field
      */
@@ -51,6 +52,7 @@ exports.signup = async (req, res) => {
     try {
         const userCreated = await Customer.create(customerObj);
         console.log("user : ", userCreated);
+
 
 
         /**
@@ -87,9 +89,7 @@ exports.signin = async (req, res) => {
 
         console.log("customer info : ", customer);
         if (customer == null) {
-            return res.status(400).send({
-                message: "Failed ! customerId passed doesn't exist"
-            })
+            return res.status(302).render("failedSignin")
         }
 
 
@@ -100,9 +100,7 @@ exports.signin = async (req, res) => {
         const passwordIsValid = bcrypt.compareSync(req.body.password, customer.password);
 
         if (!passwordIsValid) {
-            return res.status(401).send({
-                message: "Invalid credentials ! try again"
-            })
+            return res.status(301).render("failedSignin")
         }
 
         /**
@@ -115,7 +113,7 @@ exports.signin = async (req, res) => {
         });
 
         /**Set access token in response header */
-        res.cookie("x-access-token", token, {
+        res.cookie("CUSTOMER_token", token, {
             httpOnly: true,
             expires: new Date(Date.now() + 60 * 60 * 1000),
         })

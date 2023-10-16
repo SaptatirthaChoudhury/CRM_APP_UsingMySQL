@@ -2,8 +2,10 @@
  * This file will have the logic to validate the incoming request body
  */
 const db = require("../models");
-const User = db.user;
+const Customer = db.customer;
 const constants = require("../utils/constants");
+
+
 
 validateSignupRequestBody = async (req, res, next) => {
 
