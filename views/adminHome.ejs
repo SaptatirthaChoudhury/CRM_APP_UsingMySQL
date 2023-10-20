@@ -61,9 +61,9 @@
             <h2>Acknowledge customer complain</h2>
 
             <form action="http://localhost:8081/updateCustomerComplainStatus/api/v1" method="post">
-                
+
                 <label for="status">Status:</label>
-                <select class="form-control" id="status" name="status">
+                <select class="form-select" aria-label="Default select example" id="status" name="status">
                     <option selected value="select status">Select status</option>
                     <option value="RESOLVED">RESOLVED</option>
                     <option value="IN_PROGRESS">IN_PROGRESS</option>
