@@ -20,14 +20,13 @@ const verifyToken = (req, res, next) => {
         * Go and validate the token
         */
     jwt.verify(customerToken, customerSecret.secret, async (err, decoded) => {
-
-
-
         if (err) {
             return res.status(302).redirect("/signup");
         }
+        const verifiedCustomer = await Customer.findOne({ where: { customerId: decoded.id } })
 
         req.id = decoded.id;
+        req.verifiedCustomer = verifiedCustomer;
 
         next();
     })

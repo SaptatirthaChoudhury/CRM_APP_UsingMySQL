@@ -36,6 +36,21 @@ app.get("/signup", (req, res) => {
 app.get("/signin", (req, res) => {
     res.render("signin")
 })
+app.get("/logout", [verifyCustomer.verifyToken], async (req, res) => {
+    try {
+
+        res.clearCookie("CUSTOMER_token");
+        console.log("logout successfully");
+        await req.verifiedCustomer.save();
+        res.render("signin");
+
+    } catch (err) {
+        res.status(500).send("logout error : ", err)
+    }
+
+})
+
+
 app.get("/complain", [verifyCustomer.verifyToken], (req, res) => {
     res.render("complain");
 })

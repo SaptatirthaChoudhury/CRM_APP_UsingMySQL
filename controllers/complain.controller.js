@@ -56,7 +56,8 @@ exports.getAllComplains = async (req, res) => {
     try {
 
         const complains = await Complain.findAll();
-       console.log("get all complains ", complains);
+        console.log("get all complains ", complains);
+
         return complains;
 
 

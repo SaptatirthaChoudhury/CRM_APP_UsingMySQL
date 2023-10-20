@@ -16,12 +16,12 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING,
             defaultValue: constants.complainStatus.inProgress,
-            validate: {
-                isIn: {
-                    args: [constants.complainStatus.inProgress, constants.complainStatus.resolved, constants.complainStatus.blocked],
-                    msg: 'Must be valid complain status'
-                }
-            }
+            // validate: {
+            //     isIn: {
+            //         args: [constants.complainStatus.inProgress, constants.complainStatus.resolved, constants.complainStatus.blocked],
+            //         msg: 'Must be valid complain status'
+            //     }
+            // }
         },
         description: {
             type: Sequelize.TEXT,
